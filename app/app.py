@@ -90,7 +90,7 @@ def registro():
     return render_template('registro.html')
 
 
-@app.route('/registers', methods=['GET'])
+@app.route('/records', methods=['GET'])
 def ver_registros():
     try:
         conn = get_db_connection()
