@@ -90,5 +90,35 @@ def registro():
     return render_template('registro.html')
 
 
+@app.route('/registers', methods=['GET'])
+def ver_registros():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = """
+        SELECT id, nombre, email, telefono, programa, comentarios,
+               acepta_terminos, fecha_registro
+        FROM registros
+        ORDER BY fecha_registro DESC
+        """
+
+        cursor.execute(query)
+        registros = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return render_template('ver_registros.html', registros=registros)
+
+    except Exception as e:
+        import traceback
+        print("ERROR en consulta:", str(e))
+        print(traceback.format_exc())
+
+        error_message = f"Error al consultar los registros: {str(e)}"
+        return render_template('error.html', error=error_message)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
