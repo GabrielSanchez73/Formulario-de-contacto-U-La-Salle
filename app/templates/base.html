@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Universidad{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="nav-item-home">
+                <a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a>
+            </div>
+            <div class="sidebar-items">
+                <div class="nav-item"><i class="fas fa-user-friends"></i></div>
+                <div class="nav-item"><i class="fas fa-graduation-cap"></i></div>
+                <div class="nav-item"><i class="fas fa-folder"></i></div>
+                <div class="nav-item"><i class="fas fa-dollar-sign"></i></div>
+                <div class="nav-item"><i class="fas fa-calendar"></i></div>
+                <div class="nav-item"><i class="fas fa-book"></i></div>
+                <div class="nav-item"><i class="fas fa-plane"></i></div>
+                <div class="nav-item"><i class="fas fa-trash"></i></div>
+                <div class="nav-item"><i class="fas fa-share-alt"></i></div>
+                <div class="nav-item"><i class="fas fa-users"></i></div>
+            </div>
+        </aside>
+        
+        <!-- Contenido principal -->
+        <div class="content-wrapper">
+            <!-- Barra superior -->
+            <header class="main-header">
+                <div class="top-bar">
+                    <div class="logo-container">
+                        <a href="{{ url_for('home') }}">
+                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Universidad" class="logo">
+                        </a>
+                    </div>
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-bars menu-icon"></i>
+                            <input type="text" placeholder="Ingrese texto de búsqueda">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="user-actions">
+                        <a href="#" class="icon-link"><i class="fas fa-user-circle"></i></a>
+                        <a href="#" class="icon-link notification-icon"><i class="fas fa-bell"></i><span class="notification-badge">50</span></a>
+                        <a href="#" class="icon-link"><i class="fas fa-universal-access"></i></a>
+                    </div>
+                </div>
+                <div class="secondary-bar">
+                    <div class="links">
+                        <a href="#">Transparencia y acceso a la información</a>
+                        <a href="#">Línea Ética</a>
+                        <a href="#">Normatividad</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido específico de la página -->
+            <main class="main-content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
