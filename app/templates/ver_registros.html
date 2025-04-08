@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Registros{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Listado de Registros</h1>
+                <a href="{{ url_for('registro') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nuevo Registro
+                </a>
+            </div>
+
+            {% if registros %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Programa</th>
+                                <th>Comentarios</th>
+                                <th>Aceptó Términos</th>
+                                <th>Fecha de Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registro in registros %}
+                                <tr>
+                                    <td>{{ registro.id }}</td>
+                                    <td>{{ registro.nombre }}</td>
+                                    <td>{{ registro.email }}</td>
+                                    <td>{{ registro.telefono }}</td>
+                                    <td>{{ registro.programa }}</td>
+                                    <td>
+                                        {% if registro.comentarios %}
+                                            {{ registro.comentarios }}
+                                        {% else %}
+                                            <em class="text-muted">Sin comentarios</em>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if registro.acepta_terminos %}
+                                            <span class="badge badge-success">Sí</span>
+                                        {% else %}
+                                            <span class="badge badge-danger">No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ registro.fecha_registro }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> No se encontraron registros en la base de datos.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
