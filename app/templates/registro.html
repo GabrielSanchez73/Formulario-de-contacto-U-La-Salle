@@ -5,7 +5,9 @@
 {% block content %}
 <div class="registration-container">
     <h1 class="registration-title">Formulario de Registro</h1>
-    
+    {% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
     <form class="registration-form" method="POST" action="{{ url_for('registro') }}">
         <div class="form-group">
             <label for="nombre">Nombre completo:</label>
